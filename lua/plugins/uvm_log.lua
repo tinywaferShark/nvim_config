@@ -60,24 +60,45 @@ return {
   },
 
   {
-    "kevinhwang91/nvim-hlslens",
-    event = "VeryLazy",
+  "kevinhwang91/nvim-hlslens",
+  -- event = "VeryLazy", -- lazy.nvim 会根据 keys 推断加载时机，但 event 也可以保留
+    --keys = {
+    --  {
+    --    "n", -- 模式
+    --    "n", -- 按键
+    --    function() -- 执行的 Lua 函数
+    --      local count = vim.v.count1 > 0 and vim.v.count1 or 1
+    --      vim.cmd('normal! ' .. count .. 'n')
+    --      -- 确保 hlslens 已经加载 (lazy.nvim 通常会处理好)
+    --      require('hlslens').start()
+    --    end,
+    --    { noremap = true, silent = true, desc = "Hlslens next search result" } -- 选项和描述
+    --  },
+    --  {
+    --    "n",
+    --    "N",
+    --    function()
+    --      local count = vim.v.count1 > 0 and vim.v.count1 or 1
+    --      vim.cmd('normal! ' .. count .. 'N')
+    --      require('hlslens').start()
+    --    end,
+    --    { noremap = true, silent = true, desc = "Hlslens previous search result" }
+    --  },
+    --  { "n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true, desc = "Hlslens search forward" } },
+    --  { "n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true, desc = "Hlslens search backward" } },
+    --  { "n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true, desc = "Hlslens search forward (no boundary)" } },
+    --  { "n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true, desc = "Hlslens search backward (no boundary)" } },
+    --},
     config = function()
-      require('hlslens').setup()
-      local kopts = { noremap = true, silent = true }
-      vim.api.nvim_set_keymap('n', 'n',
-        [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-        kopts)
-      vim.api.nvim_set_keymap('n', 'N',
-        [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-        kopts)
-      vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-      vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-      vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-      vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-      -- vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
+      -- config 函数现在只负责 setup
+      require('hlslens').setup({
+        calm_down = true,
+        nearest_only = true,
+        nearest_float_when = 'always'
+      })
+      -- 注意：按键映射已经移到上面的 keys 表中了
     end,
-  },
+  }
 
   -- 你的其他插件...
 }

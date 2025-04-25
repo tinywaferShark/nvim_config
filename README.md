@@ -32,3 +32,8 @@ git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
 ```shell
 nvim
 ```
+
+mv ~/.config/nvim     
+mv ~/.local/share/nvim  
+mv ~/.local/state/nvim  
+mv ~/.cache/nvim  

@@ -15,6 +15,9 @@ return {
 
         -- install formatters
         "stylua",
+
+        "verible",
+        --"pyright",
         --"svlangserver",
         --"clangd",
 
