@@ -86,7 +86,42 @@ return {
           end,
           desc = "Close buffer from tabline",
         },
-
+        ["<Leader>f<CR>"] = { function() require("telescope.builtin").resume() end, desc = "恢复上次查找" },
+        ["<Leader>f'"]   = { function() require("telescope.builtin").marks() end, desc = "查找 marks" },
+        ["<Leader>fl"]   = { function() require("telescope.builtin").current_buffer_fuzzy_find() end, desc = "查找当前 buffer 行" },
+        ["<Leader>fa"]   = {
+          function()
+            require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" }
+          end,
+          desc = "查找 AstroNvim 配置文件",
+        },
+        ["<Leader>fb"]   = { function() require("telescope.builtin").buffers() end, desc = "查找 buffers" },
+        ["<Leader>fc"]   = { function() require("telescope.builtin").grep_string() end, desc = "查找光标下单词" },
+        ["<Leader>fC"]   = { function() require("telescope.builtin").commands() end, desc = "查找命令" },
+        ["<Leader>ff"]   = { function() require("telescope.builtin").find_files() end, desc = "查找文件" },
+        ["<Leader>fF"]   = {
+          function()
+            require("telescope.builtin").find_files { hidden = true, no_ignore = true }
+          end,
+          desc = "查找所有文件",
+        },
+        ["<Leader>fg"]   = { function() require("telescope.builtin").git_files() end, desc = "查找 git 文件" },
+        ["<Leader>fh"]   = { function() require("telescope.builtin").help_tags() end, desc = "查找帮助" },
+        ["<Leader>fk"]   = { function() require("telescope.builtin").keymaps() end, desc = "查找按键映射" },
+        ["<Leader>fm"]   = { function() require("telescope.builtin").man_pages() end, desc = "查找 man 手册" },
+        ["<Leader>fn"]   = { function() require("telescope.builtin").notifications() end, desc = "查找通知" }, -- 需要 telescope-notify 插件
+        ["<Leader>fo"]   = { function() require("telescope.builtin").oldfiles() end, desc = "查找最近文件" },
+        ["<Leader>fp"]   = { function() require("telescope.builtin").projects() end, desc = "查找项目" }, -- 需要 telescope-project.nvim 插件
+        ["<Leader>fr"]   = { function() require("telescope.builtin").registers() end, desc = "查找寄存器" },
+        ["<Leader>fs"]   = { function() require("telescope.builtin").buffers() end, desc = "查找 buffer/最近/文件" },
+        ["<Leader>ft"]   = { function() require("telescope.builtin").colorscheme() end, desc = "查找主题" },
+        ["<Leader>fw"]   = { function() require("telescope.builtin").live_grep() end, desc = "查找内容" },
+        ["<Leader>fW"]   = {
+          function()
+            require("telescope.builtin").live_grep { additional_args = function() return { "--hidden", "--no-ignore" } end }
+          end,
+          desc = "查找所有文件内容",
+        },
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
