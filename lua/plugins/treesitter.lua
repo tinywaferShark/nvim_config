@@ -5,7 +5,7 @@ return {
     ensure_installed = {
       "lua",
       "vim",
-      --"verilog",
+      "verilog",
       "bash",
       "python",
       "c",
