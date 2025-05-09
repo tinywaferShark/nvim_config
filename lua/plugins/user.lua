@@ -34,11 +34,15 @@ return {
   -- You can disable default plugins as follows:
   --{ "max397574/better-escape.nvim", enabled = false },
   {
-    "Vonr/align.nvim",
-    branch = "v2",
-    lazy = true,
-    init = function()
-      -- Create your mappings here
+    "echasnovski/mini.align",
+    version = false,
+    config = function()
+      require("mini.align").setup({
+        mappings = {
+          start = 'ga',            -- 默认，开始对齐
+          start_with_preview = '', -- 禁用预览（可选）
+        }
+      })
     end,
   },
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
