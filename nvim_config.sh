@@ -17,7 +17,11 @@ ARCHIVE_NAME="nvim_backup_$(date +%Y%m%d_%H%M%S).tar.gz"
 
 host_mode() {
   local out_file="${1:-$ARCHIVE_NAME}"
-  tar -czvf "$out_file" "${NVIM_DIRS[@]}"
+  tar -czvf "$out_file" \
+    --exclude='.git' \
+    --exclude='*/.git' \
+    --exclude='*/.git/*' \
+    "${NVIM_DIRS[@]}"
   echo "已打包到 $out_file"
 }
 

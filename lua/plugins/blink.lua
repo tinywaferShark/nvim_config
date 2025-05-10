@@ -5,6 +5,11 @@ return {
     opts.appearance = { nerd_font_variant = 'mono' }
     opts.completion = { documentation = { auto_show = false } }
 
+    -- 新增 fuzzy.prebuilt_binaries 配置
+    opts.fuzzy = opts.fuzzy or {}
+    opts.fuzzy.prebuilt_binaries = opts.fuzzy.prebuilt_binaries or {}
+    opts.fuzzy.prebuilt_binaries.ignore_version_mismatch = true
+
     -- 设置默认启用的补全源
     opts.sources = opts.sources or {}
     opts.sources.default = { "lsp", "path", "snippets", "buffer", "cmdline" }
